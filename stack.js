@@ -16,7 +16,12 @@ function randomNumber(){
 
 function pushNode(){
 	
-	if( valueStack.length >= MAX_STACK_SIZE || animationFlag === true ){
+	if( animationFlag === true ){
+		return;
+	}
+	
+	if( valueStack.length >= MAX_STACK_SIZE ){
+		console.log("Stack is full.");
 		return;
 	}
 	
@@ -61,7 +66,12 @@ function pushNode(){
 
 function popNode(){
 	
+	if( animationFlag === true ){
+		return;
+	}
+	
 	if( valueStack.length === 0 ){
+		console.log("Stack is empty.");
 		return;
 	}
 	
