@@ -1,32 +1,42 @@
-#id_container{
+#id-container{
 	text-align: center;
 	max-width: 300px;
 	font-family: Helvetica;
+	border: 3px solid;
 }
 
-#id_header{
-	
-}
-
-#id_main{
+#id-header{
 	border: 1px solid;
+	font-size: 40px;
+	background-color: lightgreen;
+}
+
+#id-header p{
+	padding: 5px;
+	margin: 0;
+	z-index: 1;
+}
+
+#id-main{
 	display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 150px 1fr;
+	z-index: 0;
 }
 
-#id_div_stack{
-	height: 400px;
-	width: 200px;
+#id-div-stack{
+	height: 300px;
+	width: 100%;
 	background-color: orange;
+	border: 1px solid;
 }
 
-#id_div_buttons{
+#id-div-buttons{
 	display: flex;
     flex-direction: column;
+	border: 1px solid;
 }
 
 .stack-button{
 	font-size: 30px;
 	width: 100%;
-	padding: 5px 0;
 }
