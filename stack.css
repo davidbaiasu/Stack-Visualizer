@@ -14,13 +14,11 @@
 #id-header p{
 	padding: 5px;
 	margin: 0;
-	z-index: 1;
 }
 
 #id-main{
 	display: grid;
     grid-template-columns: 150px 1fr;
-	z-index: 0;
 }
 
 #id-div-stack{
@@ -28,6 +26,9 @@
 	width: 100%;
 	background-color: orange;
 	border: 1px solid;
+	
+	position: relative;
+	overflow: hidden;
 }
 
 #id-div-buttons{
@@ -36,7 +37,18 @@
 	border: 1px solid;
 }
 
+#id-input-number{
+	font-size: 30px;
+}
+
 .stack-button{
 	font-size: 30px;
 	width: 100%;
+}
+
+.node{
+	position: absolute;
+    background-color: lightblue;
+	border: 1px solid;
+	transition: top 0.5s ease-in;
 }
