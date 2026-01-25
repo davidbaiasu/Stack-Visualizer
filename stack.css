@@ -1,0 +1,32 @@
+#id_container{
+	text-align: center;
+	max-width: 300px;
+	font-family: Helvetica;
+}
+
+#id_header{
+	
+}
+
+#id_main{
+	border: 1px solid;
+	display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+#id_div_stack{
+	height: 400px;
+	width: 200px;
+	background-color: orange;
+}
+
+#id_div_buttons{
+	display: flex;
+    flex-direction: column;
+}
+
+.stack-button{
+	font-size: 30px;
+	width: 100%;
+	padding: 5px 0;
+}
