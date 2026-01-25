@@ -47,8 +47,11 @@
 }
 
 .node{
+	display: flex;
 	position: absolute;
     background-color: lightblue;
 	border: 1px solid;
+	align-items: center;
+	justify-content: center;
 	transition: top 0.5s ease-in;
 }

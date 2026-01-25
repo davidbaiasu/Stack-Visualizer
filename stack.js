@@ -1,10 +1,14 @@
 const containerElement = document.getElementById('id-container');
 const stackElement = document.getElementById('id-div-stack');
 
+const popButtonElement = document.getElementById('id-pop-button');
 const pushButtonElement = document.getElementById('id-push-button');
 const inputNumberElement = document.getElementById('id-input-number');
 
-let scriptStack = [];
+const MAX_STACK_SIZE = 10;
+
+let valueStack = [];
+let animationFlag = false;
 
 function randomNumber(){
 	return Math.floor(Math.random() * 100) + 1;
@@ -12,8 +16,13 @@ function randomNumber(){
 
 function pushNode(){
 	
+	if( valueStack.length >= MAX_STACK_SIZE || animationFlag === true ){
+		return;
+	}
+	
 	const newNode = document.createElement('div');
 	newNode.className = 'node';
+	animationFlag = true;
 	
 	const stackHeight = stackElement.clientHeight;
 	const stackWidth = stackElement.clientWidth;
@@ -31,20 +40,45 @@ function pushNode(){
 		newNodeValue = randomNumber();
 	}
 	
+	valueStack.push(newNodeValue);
 	newNode.innerText = newNodeValue;
 	
 	stackElement.appendChild(newNode);
 	
 	setTimeout(() => {
         
-        const currentItems = stackElement.getElementsByClassName('node').length - 1;
-        const bottomPosition = stackHeight - (nodeHeight * (currentItems + 1));
+        const currLength = stackElement.getElementsByClassName('node').length - 1;
+        const bottomPosition = stackHeight - (nodeHeight * (currLength + 1));
         
         newNode.style.top = bottomPosition + 'px';
+		setTimeout(() => { 
+			animationFlag = false; 
+		}, 500);
 		
-    }, 5);
+    }, 0);
+	
+}
+
+function popNode(){
+	
+	if( valueStack.length === 0 ){
+		return;
+	}
+	
+	const deleteNode = stackElement.lastElementChild;
+	const nodeHeight = deleteNode.clientHeight;
+	
+	deleteNode.style.top = '-100px';
+	animationFlag = true;
+	
+	setTimeout(() => {
+        deleteNode.remove();
+		valueStack.pop();
+		animationFlag = false;
+    }, 500);
 	
 }
 
 pushButtonElement.addEventListener('click', pushNode);
+popButtonElement.addEventListener('click', popNode);
 
