@@ -1,5 +1,6 @@
 #id-container{
 	text-align: center;
+	margin: 0 auto;
 	max-width: 300px;
 	font-family: Helvetica;
 	border: 3px solid;
@@ -7,6 +8,7 @@
 
 #id-header{
 	border: 1px solid;
+	border-bottom: 3px solid;
 	font-size: 40px;
 	background-color: lightgreen;
 }
@@ -39,6 +41,12 @@
 
 #id-input-number{
 	font-size: 30px;
+}
+
+#id-footer{
+	border: 1px solid;
+	border-top: 3px solid;
+	background-color: yellow;
 }
 
 .stack-button{

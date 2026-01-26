@@ -4,8 +4,11 @@ const stackElement = document.getElementById('id-div-stack');
 const popButtonElement = document.getElementById('id-pop-button');
 const pushButtonElement = document.getElementById('id-push-button');
 const inputNumberElement = document.getElementById('id-input-number');
+const peekButtonElement = document.getElementById('id-peek-button');
 
 const MAX_STACK_SIZE = 10;
+const defaultNodeColor = 'lightblue';
+const actionNodeColor = 'pink';
 
 let valueStack = [];
 let animationFlag = false;
@@ -82,13 +85,39 @@ function popNode(){
 	animationFlag = true;
 	
 	setTimeout(() => {
+		
         deleteNode.remove();
 		valueStack.pop();
 		animationFlag = false;
+		
     }, 500);
+	
+}
+
+function peekStack(){
+	
+	if( animationFlag === true ){
+		return;
+	}
+	
+	if( valueStack.length === 0 ){
+		console.log("Stack is empty.");
+		return;
+	}
+	
+	animationFlag = true;
+	
+	const peekNode = stackElement.lastElementChild;
+	peekNode.style.backgroundColor = actionNodeColor;
+	
+	setTimeout(() => {
+		animationFlag = false;
+		peekNode.style.backgroundColor = defaultNodeColor;
+	}, 1000);
 	
 }
 
 pushButtonElement.addEventListener('click', pushNode);
 popButtonElement.addEventListener('click', popNode);
+peekButtonElement.addEventListener('click', peekStack);
 
