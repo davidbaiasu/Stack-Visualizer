@@ -114,7 +114,7 @@ function peekStack(){
 	}
 	
 	if( valueStack.length === 0 ){
-		console.log("Stack is empty.");
+		resultElement.innerText = "Stack is empty";
 		return;
 	}
 	
@@ -127,6 +127,8 @@ function peekStack(){
 		animationFlag = false;
 		peekNode.style.backgroundColor = defaultNodeColor;
 	}, 1000);
+	
+	resultElement.innerText = "The value " + valueStack[valueStack.length - 1] + " is at the top";
 	
 }
 
