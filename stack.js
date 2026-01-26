@@ -5,6 +5,9 @@ const popButtonElement = document.getElementById('id-pop-button');
 const pushButtonElement = document.getElementById('id-push-button');
 const inputNumberElement = document.getElementById('id-input-number');
 const peekButtonElement = document.getElementById('id-peek-button');
+const sizeButtonElement = document.getElementById('id-size-button');
+
+const resultElement = document.getElementById('id-result');
 
 const MAX_STACK_SIZE = 10;
 const defaultNodeColor = 'lightblue';
@@ -24,13 +27,14 @@ function pushNode(){
 	}
 	
 	if( valueStack.length >= MAX_STACK_SIZE ){
-		console.log("Stack is full.");
+		resultElement.innerText = "Stack is full";
 		return;
 	}
 	
 	const newNode = document.createElement('div');
 	newNode.className = 'node';
 	animationFlag = true;
+	newNode.style.backgroundColor = actionNodeColor;
 	
 	const stackHeight = stackElement.clientHeight;
 	const stackWidth = stackElement.clientWidth;
@@ -60,8 +64,11 @@ function pushNode(){
         
         newNode.style.top = bottomPosition + 'px';
 		setTimeout(() => { 
-			animationFlag = false; 
+			newNode.style.backgroundColor = defaultNodeColor;
+			animationFlag = false;
 		}, 500);
+		
+		resultElement.innerText = "Pushed value " + newNodeValue;
 		
     }, 0);
 	
@@ -74,23 +81,29 @@ function popNode(){
 	}
 	
 	if( valueStack.length === 0 ){
-		console.log("Stack is empty.");
+		resultElement.innerText = "Stack is empty";
 		return;
 	}
 	
 	const deleteNode = stackElement.lastElementChild;
 	const nodeHeight = deleteNode.clientHeight;
+	deleteNode.style.backgroundColor = actionNodeColor;
 	
 	deleteNode.style.top = '-100px';
 	animationFlag = true;
+	
+	popValue = valueStack[valueStack.length - 1]; 
 	
 	setTimeout(() => {
 		
         deleteNode.remove();
 		valueStack.pop();
+		deleteNode.style.backgroundColor = defaultNodeColor;
 		animationFlag = false;
 		
     }, 500);
+	
+	resultElement.innerText = "Popped value " + popValue;
 	
 }
 
@@ -117,7 +130,19 @@ function peekStack(){
 	
 }
 
+function sizeStack(){
+	
+	if( valueStack.length == 0 ){
+		resultElement.innerText = "Stack is empty";
+	}
+	
+	else{
+		resultElement.innerText = "Stack size is " + valueStack.length;
+	}
+	
+}
+
 pushButtonElement.addEventListener('click', pushNode);
 popButtonElement.addEventListener('click', popNode);
 peekButtonElement.addEventListener('click', peekStack);
-
+sizeButtonElement.addEventListener('click', sizeStack);
