@@ -1,8 +1,11 @@
+body{
+	font-family: Helvetica serif;
+}
+
 #id-container{
 	text-align: center;
 	margin: 0 auto;
 	max-width: 300px;
-	font-family: Helvetica;
 	border: 3px solid;
 }
 

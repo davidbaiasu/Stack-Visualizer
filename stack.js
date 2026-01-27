@@ -3,16 +3,18 @@ const stackElement = document.getElementById('id-div-stack');
 
 const popButtonElement = document.getElementById('id-pop-button');
 const pushButtonElement = document.getElementById('id-push-button');
-const inputNumberElement = document.getElementById('id-input-number');
 const peekButtonElement = document.getElementById('id-peek-button');
 const sizeButtonElement = document.getElementById('id-size-button');
 const flushButtonElement = document.getElementById('id-flush-button');
+const searchButtonElement = document.getElementById('id-search-button');
 
+const inputNumberElement = document.getElementById('id-input-number');
 const resultElement = document.getElementById('id-result');
 
 const MAX_STACK_SIZE = 10;
 const defaultNodeColor = 'lightblue';
 const actionNodeColor = 'pink';
+const searchNodeColor = 'red';
 
 let valueStack = [];
 let animationFlag = false;
@@ -164,8 +166,48 @@ function flushStack(){
 	
 }
 
+function searchStack(){
+	
+	const searchedValue = inputNumberElement.value;
+	
+	if( animationFlag === true || searchedValue === "" ){
+		return;
+	}
+	
+	animationFlag = true;
+	const stackNodes = Array.from(stackElement.children);
+	
+	stackNodes.forEach((node, index) => {
+		
+		setTimeout(() => {
+		
+			node.style.backgroundColor = actionNodeColor;
+			
+			setTimeout(() => {
+				
+				if( node.innerText === searchedValue ){
+					node.style.backgroundColor = searchNodeColor;
+				}
+				
+				else{
+					node.style.backgroundColor = defaultNodeColor;
+				}
+				
+				if( index == valueStack.length - 1 ){
+					animationFlag = false;	
+				}
+				
+			}, 1000);
+
+		}, index * 1000);
+		
+	});
+	
+}
+
 pushButtonElement.addEventListener('click', pushNode);
 popButtonElement.addEventListener('click', popNode);
 peekButtonElement.addEventListener('click', peekStack);
 sizeButtonElement.addEventListener('click', sizeStack);
 flushButtonElement.addEventListener('click', flushStack);
+searchButtonElement.addEventListener('click', searchStack);
