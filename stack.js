@@ -134,6 +134,10 @@ function peekStack(){
 
 function sizeStack(){
 	
+	if( animationFlag === true ){
+		return;
+	}
+	
 	if( valueStack.length == 0 ){
 		resultElement.innerText = "Stack is empty";
 	}
