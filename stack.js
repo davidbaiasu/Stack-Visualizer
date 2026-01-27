@@ -6,6 +6,7 @@ const pushButtonElement = document.getElementById('id-push-button');
 const inputNumberElement = document.getElementById('id-input-number');
 const peekButtonElement = document.getElementById('id-peek-button');
 const sizeButtonElement = document.getElementById('id-size-button');
+const flushButtonElement = document.getElementById('id-flush-button');
 
 const resultElement = document.getElementById('id-result');
 
@@ -59,8 +60,7 @@ function pushNode(){
 	
 	setTimeout(() => {
         
-        const currLength = stackElement.getElementsByClassName('node').length - 1;
-        const bottomPosition = stackHeight - (nodeHeight * (currLength + 1));
+        const bottomPosition = stackHeight - (nodeHeight * valueStack.length);
         
         newNode.style.top = bottomPosition + 'px';
 		setTimeout(() => { 
@@ -144,7 +144,24 @@ function sizeStack(){
 	
 }
 
+function flushStack(){
+	
+	if( valueStack.length === 0 ){
+		animationFlag = false;
+		resultElement.innerText = "Stack flushed";
+		return;
+	}
+	
+	popNode();
+	
+	setTimeout(() => {
+		flushStack();
+	}, 500);
+	
+}
+
 pushButtonElement.addEventListener('click', pushNode);
 popButtonElement.addEventListener('click', popNode);
 peekButtonElement.addEventListener('click', peekStack);
 sizeButtonElement.addEventListener('click', sizeStack);
+flushButtonElement.addEventListener('click', flushStack);
