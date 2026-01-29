@@ -43,13 +43,17 @@ body{
 }
 
 #id-input-number{
-	font-size: 30px;
+	font-size: 27px;
 }
 
 #id-footer{
 	border: 1px solid;
 	border-top: 3px solid;
 	background-color: yellow;
+}
+
+#id-range-speed{
+	
 }
 
 .stack-button{
@@ -64,5 +68,4 @@ body{
 	border: 1px solid;
 	align-items: center;
 	justify-content: center;
-	transition: top 0.5s ease-in;
 }
