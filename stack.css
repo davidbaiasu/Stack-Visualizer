@@ -52,8 +52,25 @@ body{
 	background-color: yellow;
 }
 
-#id-range-speed{
-	
+#id-div-range{
+	display: flex;
+	align-items:center;
+	gap: 5px;
+	width: 100%;
+	padding-left: 5px;
+}
+
+#id-range-speed {
+	width: 100px;
+}
+
+.range-value, #id-range-speed{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.range-value{
+	font-size: 14px;
 }
 
 .stack-button{
