@@ -52,7 +52,7 @@ body{
 	background-color: yellow;
 }
 
-#id-div-range{
+#id-div-range, #id-div-capacity{
 	display: flex;
 	align-items:center;
 	gap: 5px;
@@ -60,27 +60,37 @@ body{
 	padding-left: 5px;
 }
 
-#id-range-speed {
+#id-range-speed, #id-range-capacity{
 	width: 100px;
 }
 
-.range-value, #id-range-speed{
+#id-range-speed{
+	margin-top: 5px;
+}
+
+#id-range-capacity{
+	margin-left: 8px;
+}
+
+#id-range-value, #id-range-capacity{
+	font-size: 14px;
+}
+
+#id-range-value, #id-range-speed, #id-capacity-value, #id-range-capacity{
 	display: inline-block;
 	vertical-align: middle;
 }
 
-.range-value{
-	font-size: 14px;
-}
-
 .stack-button{
-	font-size: 30px;
+	height: 12%;
+	font-size: 27px;
 	width: 100%;
 }
 
 .node{
 	display: flex;
 	position: absolute;
+	font-size: 3vw;
     background-color: lightblue;
 	border: 1px solid;
 	align-items: center;

@@ -1,6 +1,8 @@
 const containerElement = document.getElementById('id-container');
 const stackElement = document.getElementById('id-div-stack');
-const rangeElement = document.getElementById('id-range-speed');
+
+const speedRangeElement = document.getElementById('id-range-speed');
+const sizeRangeElement = document.getElementById('id-range-capacity');
 
 const popButtonElement = document.getElementById('id-pop-button');
 const pushButtonElement = document.getElementById('id-push-button');
@@ -13,9 +15,12 @@ const inputNumberElement = document.getElementById('id-input-number');
 const resultElement = document.getElementById('id-result');
 
 let timeOutValue = 500;
-const MAX_STACK_SIZE = 10;
-const nodeWidthMultiplier = 0.8;
-const nodeHeightMultiplier = 0.1;
+let maxStackSize = 10;
+
+let fontMultiplier = 0.7;
+let nodeWidthMultiplier = 0.8;
+let nodeHeightMultiplier = 0.1;
+
 const defaultNodeColor = 'lightblue';
 const actionNodeColor = 'pink';
 const searchNodeColor = 'red';
@@ -23,7 +28,28 @@ const searchNodeColor = 'red';
 let valueStack = [];
 let animationFlag = false;
 
-rangeElement.oninput = function(){
+sizeRangeElement.oninput = function(){
+	
+	maxStackSize = parseInt(this.value);
+	nodeHeightMultiplier = 1 / this.value;
+	
+	
+	
+	const stackHeight = stackElement.clientHeight;
+    const nodes = stackElement.querySelectorAll('.node');
+	
+	nodes.forEach((node, index) => {
+        const newNodeHeight = stackHeight * nodeHeightMultiplier;
+        node.style.height = newNodeHeight + 'px';
+        node.style.fontSize = (newNodeHeight * fontMultiplier) + 'px';
+
+        const newTop = stackHeight - (newNodeHeight * (index + 1));
+        node.style.top = newTop + 'px';
+    });
+	
+}
+
+speedRangeElement.oninput = function(){
 	
 	timeOutValue = this.value * (-1);
 	
@@ -39,7 +65,7 @@ function pushNode(){
 		return;
 	}
 	
-	if( valueStack.length >= MAX_STACK_SIZE ){
+	if( valueStack.length >= maxStackSize ){
 		resultElement.innerText = "Stack is full";
 		return;
 	}
@@ -60,6 +86,7 @@ function pushNode(){
     newNode.style.height = nodeHeight + 'px';
 	newNode.style.left = (stackWidth - nodeWidth) / 2 + 'px';
 	newNode.style.top = '-' + nodeHeight + 'px';
+	newNode.style.fontSize = (nodeHeight * fontMultiplier) + 'px';
 	
 	let newNodeValue = inputNumberElement.value;
 	
@@ -68,6 +95,7 @@ function pushNode(){
 	}
 	
 	valueStack.push(newNodeValue);
+	sizeRangeElement.min = valueStack.length;
 	newNode.innerText = newNodeValue;
 	
 	stackElement.appendChild(newNode);
@@ -113,6 +141,7 @@ function popNode(){
 		
         deleteNode.remove();
 		valueStack.pop();
+		sizeRangeElement.min = valueStack.length || 5;
 		deleteNode.style.backgroundColor = defaultNodeColor;
 		animationFlag = false;
 		
